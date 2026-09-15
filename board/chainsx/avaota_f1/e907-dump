@@ -18,7 +18,7 @@ mailbox)
 	;;
 state)
 	for name_addr in boot-addr:0x43030204 rv-reset:0x42001090 \
-			e907-reset:0x4200109c; do
+			e907-reset:0x4200109c aon-e907-clk:0x4a010584; do
 		name=${name_addr%:*}
 		addr=${name_addr#*:}
 		printf '%-15s %s %s\n' "$name" "$addr" \
