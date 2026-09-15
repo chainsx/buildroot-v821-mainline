@@ -1,0 +1,10 @@
+config BR2_PACKAGE_ALLWINNER_WIFIMANAGER
+	bool "allwinner-wifimanager"
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	help
+	  Minimal Allwinner wifimanager port using the V821 xrlink
+	  backend. It provides the wifimg STA API and the wifi_sta test
+	  utility; AP, P2P, and Linux nl80211 backends are not included.
+
+comment "allwinner-wifimanager needs a toolchain w/ threads"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS
