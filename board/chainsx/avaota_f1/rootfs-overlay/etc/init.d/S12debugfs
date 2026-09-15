@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case "$1" in
+start)
+	mkdir -p /sys/kernel/debug
+	mount -t debugfs none /sys/kernel/debug
+	;;
+stop)
+	umount /sys/kernel/debug
+	;;
+esac
