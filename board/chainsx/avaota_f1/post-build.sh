@@ -17,3 +17,5 @@ fi
 
 install -m 0644 "${board_dir}"/extlinux.conf \
 	"${BINARIES_DIR}"/extlinux.conf
+
+install -m 0755 "${board_dir}"/e907-dump "${TARGET_DIR}"/usr/bin/e907-dump

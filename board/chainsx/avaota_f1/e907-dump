@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -eu
+
+case "${1:-}" in
+trace)
+	dd if=/dev/mem bs=1 skip=$((0x81299fc0)) count=4096 2>/dev/null |
+		strings -n 4
+	;;
+mailbox)
+	for name_addr in remote-fifo:0x43033060 local-fifo:0x49102060 \
+			remote-irq-en:0x43033020 local-irq-en:0x49102020; do
+		name=${name_addr%:*}
+		addr=${name_addr#*:}
+		printf '%-15s %s %s\n' "$name" "$addr" \
+			"$(devmem "$addr")"
+	done
+	;;
+*)
+	echo "Usage: $0 {trace|mailbox}" >&2
+	exit 2
+	;;
+esac
