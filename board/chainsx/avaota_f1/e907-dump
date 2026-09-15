@@ -16,8 +16,33 @@ mailbox)
 			"$(devmem "$addr")"
 	done
 	;;
+state)
+	for name_addr in boot-addr:0x43030204 rv-reset:0x42001090 \
+			e907-reset:0x4200109c; do
+		name=${name_addr%:*}
+		addr=${name_addr#*:}
+		printf '%-15s %s %s\n' "$name" "$addr" \
+			"$(devmem "$addr")"
+	done
+	;;
+spi)
+	for name_addr in PC6:0x4200003c PC7:0x42000040 \
+			PC8:0x42000044 PC9:0x42000048 \
+			PC10:0x4200004c PC11:0x42000050 \
+			GC:0x44f00004 GCA:0x44f00008 \
+			TC:0x44f0000c INT-STA:0x44f00018 \
+			PHC:0x44f00020 TCS:0x44f00028 \
+			TNM:0x44f0002c DMA:0x44f00040 \
+			DSC:0x44f00044 CFT:0x44f0004c \
+			CFS:0x44f00050; do
+		name=${name_addr%:*}
+		addr=${name_addr#*:}
+		printf '%-15s %s %s\n' "$name" "$addr" \
+			"$(devmem "$addr")"
+	done
+	;;
 *)
-	echo "Usage: $0 {trace|mailbox}" >&2
+	echo "Usage: $0 {trace|mailbox|state|spi}" >&2
 	exit 2
 	;;
 esac
