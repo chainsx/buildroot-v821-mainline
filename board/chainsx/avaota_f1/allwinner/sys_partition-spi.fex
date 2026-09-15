@@ -1,0 +1,10 @@
+; The complete SPI image is carried as FULLIMG; no Phoenix partition payload
+; is downloaded separately.
+[mbr]
+size = 16
+
+[partition_start]
+
+[partition]
+    name         = UDISK
+    user_type    = 0x8100

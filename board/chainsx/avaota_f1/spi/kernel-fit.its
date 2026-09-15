@@ -1,0 +1,58 @@
+/dts-v1/;
+
+/ {
+	description = "Avaota F1 SPI boot FIT";
+	#address-cells = <1>;
+
+	images {
+		kernel {
+			description = "Linux kernel";
+			data = /incbin/("Image.gz");
+			type = "kernel";
+			os = "linux";
+			arch = "riscv";
+			compression = "gzip";
+			load = <0x80400000>;
+			entry = <0x80400000>;
+			hash-1 {
+				algo = "crc32";
+			};
+		};
+
+		ramdisk {
+			description = "Buildroot initramfs";
+			data = /incbin/("rootfs.cpio.gz");
+			type = "ramdisk";
+			os = "linux";
+			arch = "riscv";
+			compression = "gzip";
+			load = <0x81800000>;
+			entry = <0x81800000>;
+			hash-1 {
+				algo = "crc32";
+			};
+		};
+
+		fdt {
+			description = "Avaota F1 device tree";
+			data = /incbin/("sun300i-v821-avaota-f1.dtb");
+			type = "flat_dt";
+			arch = "riscv";
+			compression = "none";
+			load = <0x80f80000>;
+			hash-1 {
+				algo = "crc32";
+			};
+		};
+	};
+
+	configurations {
+		default = "conf-1";
+		conf-1 {
+			description = "Avaota F1 SPI boot configuration";
+			kernel = "kernel";
+			ramdisk = "ramdisk";
+			fdt = "fdt";
+		};
+	};
+};

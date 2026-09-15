@@ -1,0 +1,44 @@
+;---------------------------------------------------------------------------------------------------
+; comment retained for the Allwinner script parser length behavior
+;---------------------------------------------------------------------------------------------------
+;---------------------------------------------------------------------------------------------------
+; comment retained for the Allwinner script parser length behavior
+;---------------------------------------------------------------------------------------------------
+;***************************************************************************************************
+; comment retained for the Allwinner script parser length behavior
+;***************************************************************************************************
+[mbr]
+size = 64
+;***************************************************************************************************
+; comment retained for the Allwinner script parser length behavior
+;
+;
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+;
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+; comment retained for the Allwinner script parser length behavior
+;***************************************************************************************************
+[partition_start]
+[partition]
+    name         = boot
+    size         = 131072
+    downloadfile = "boot.fex"
+    user_type    = 0x8000
+[partition]
+    name         = rootfs
+    size         = 122880
+    downloadfile = "rootfs.fex"
+    user_type    = 0x8000
+[partition]
+    name         = UDISK
+    user_type    = 0x8100
