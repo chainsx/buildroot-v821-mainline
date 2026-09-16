@@ -2,10 +2,20 @@
 
 case "$1" in
 start)
+	if ! grep -qs ' /proc proc ' /proc/mounts; then
+		mount -t proc none /proc
+	fi
+	if ! grep -qs ' /sys sysfs ' /proc/mounts; then
+		mount -t sysfs none /sys
+	fi
 	mkdir -p /sys/kernel/debug
-	mount -t debugfs none /sys/kernel/debug
+	if ! grep -qs ' /sys/kernel/debug debugfs ' /proc/mounts; then
+		mount -t debugfs none /sys/kernel/debug
+	fi
 	;;
 stop)
-	umount /sys/kernel/debug
+	if grep -qs ' /sys/kernel/debug debugfs ' /proc/mounts; then
+		umount /sys/kernel/debug
+	fi
 	;;
 esac

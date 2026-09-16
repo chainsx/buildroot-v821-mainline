@@ -4,8 +4,13 @@ set -eu
 
 case "${1:-}" in
 trace)
-	dd if=/dev/mem bs=1 skip=$((0x81299fc0)) count=4096 2>/dev/null |
+	dd if=/dev/mem bs=1 skip=$((0x81129fc0)) count=4096 2>/dev/null |
 		strings -n 4
+	;;
+heartbeat)
+	for offset in 0 4 8 12 16 20 24 28; do
+		devmem $((0x81440000 + offset))
+	done
 	;;
 mailbox)
 	for name_addr in remote-fifo:0x43033060 local-fifo:0x49102060 \
@@ -45,7 +50,7 @@ spi)
 	done
 	;;
 *)
-	echo "Usage: $0 {trace|mailbox|state|spi}" >&2
+	echo "Usage: $0 {trace|heartbeat|mailbox|state|spi}" >&2
 	exit 2
 	;;
 esac
