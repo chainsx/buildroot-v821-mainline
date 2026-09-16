@@ -17,8 +17,11 @@ mailbox)
 	done
 	;;
 state)
-	for name_addr in boot-addr:0x43030204 rv-reset:0x42001090 \
-			e907-reset:0x4200109c aon-e907-clk:0x4a010584; do
+	for name_addr in boot-addr:0x43030204 work-mode:0x43030248 \
+			core-gate:0x42001080 ts-gate:0x4200100c \
+			rv-reset:0x42001090 e907-reset:0x4200109c \
+			aon-e907-clk:0x4a010584 \
+			aon-peri-pll:0x4a010020; do
 		name=${name_addr%:*}
 		addr=${name_addr#*:}
 		printf '%-15s %s %s\n' "$name" "$addr" \
@@ -26,9 +29,9 @@ state)
 	done
 	;;
 spi)
-	for name_addr in PC6:0x4200003c PC7:0x42000040 \
-			PC8:0x42000044 PC9:0x42000048 \
-			PC10:0x4200004c PC11:0x42000050 \
+	for name_addr in PC-CFG0:0x42000060 PC-CFG1:0x42000064 \
+			PC-DRV0:0x42000074 PC-DRV1:0x42000078 \
+			PC-PULL0:0x42000084 PC-PULL1:0x42000088 \
 			GC:0x44f00004 GCA:0x44f00008 \
 			TC:0x44f0000c INT-STA:0x44f00018 \
 			PHC:0x44f00020 TCS:0x44f00028 \
